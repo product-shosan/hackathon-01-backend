@@ -12,12 +12,14 @@ sensor = MotionSensor(4)
 
 #検知用関数
 def detected():
-    status["is_occupied"] = True
-    print("人を検知しました。")
+    if not status["is_occupied"]:
+        status["is_occupied"] = True
+        print("人を検知しました。")
 
 def m_stopped():
-    status["is_occupied"] = False
-    print("空室")
+    if status["is_occupied"]:
+        status["is_occupied"] = False
+        print("空室")
 
 #関数の割り当て
 sensor.when_motion = detected
