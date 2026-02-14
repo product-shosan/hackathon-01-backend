@@ -3,6 +3,7 @@ from signal import pause
 import time
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 
 #状態管理用変数
 status = {
@@ -43,9 +44,9 @@ app.add_middleware(
 def get_status():
     return status
 
-print("センサー監視開始... (Ctrl+C で終了)")
+# サーバーの起動
+if __name__ == "__main__":
+    print("センサー監視 & APIサーバー開始...")
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
-try:
-    pause()
-except KeyboardInterrupt:
-    print("\n終了します")
+print("センサー監視開始... (Ctrl+C で終了)")
