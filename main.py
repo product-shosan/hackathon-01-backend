@@ -17,7 +17,7 @@ def detected():
 
 def m_stopped():
     status["is_occupied"] = False
-    print("人を検知しました。")
+    print("空室")
 
 #関数の割り当て
 sensor.when_motion = detected
