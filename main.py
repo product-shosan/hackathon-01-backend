@@ -1,18 +1,20 @@
-from gpiozero import LED
-from time import sleep
+from gpiozero import MotionSensor
+from signal import pause
+import time
 
-# GPIO 17番ピンにLEDが接続されていると仮定
-led = LED(17)
+print("Motion Detected!!")
 
-print("LEDを点滅させます。Ctrl+Cで終了します。")
+#関数の設定
+def detected():
+    a = 'Motion Deteced!!'
+    print(a)
 
-try:
-    while True:
-        led.on()
-        print("ON")
-        sleep(1)
-        led.off()
-        print("OFF")
-        sleep(1)
-except KeyboardInterrupt:
-    print("終了します。")
+sensor = MotionSensor(2)
+
+sensor.when_motion = detected
+
+while 1:
+    print('.')
+    time.sleep(0.1)
+
+pause()
